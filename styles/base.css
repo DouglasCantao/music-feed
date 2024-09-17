@@ -1,0 +1,22 @@
+:root {
+  /* Primary colors */
+  --p-color: #EE9A02;
+  --p-color-dark: #BF6500;
+  --p-color-light: #F6DB81;
+  --p-color-contrastText: #131313;
+
+  /* Secondary colors */
+  --s-color: #1B4057;
+  --s-color-light: #9BBAD2;
+  --s-color-dark: #072B3F;
+  --s-color-contrastText: #F5F5F5;
+
+  /* Text colors */
+  --p-text-color: #131313;
+  --s-text-color: #606060;
+
+  /* Background colors */
+  --p-background-color: #F7F7F8;
+  --s-background-color: #FAFAFA;
+}
+
