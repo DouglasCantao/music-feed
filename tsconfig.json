@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "components/BaseCard.js"  ],
+, "components/BaseCard.js", "components/GenreSection.js"  ],
   "exclude": [
     "node_modules"
   ]

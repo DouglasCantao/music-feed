@@ -2,6 +2,7 @@ import Head from "next/head";
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import BaseCard from '../components/BaseCard';
+import GenreSection from '../components/GenreSection';
 import { useState, useEffect } from 'react'
 
 export default function Home(props) {
@@ -25,9 +26,14 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Stack direction="row" spacing={2}>
+
+        <GenreSection />
+
+
+
+        {/* <Stack direction="row" spacing={2}>
           <BaseCard props={ song } />
-        </Stack>
+        </Stack> */}
       </main>
     </>
     );
