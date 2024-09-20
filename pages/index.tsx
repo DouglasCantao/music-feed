@@ -1,23 +1,11 @@
 import Head from "next/head";
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
-import BaseCard from '../components/BaseCard';
-import { useState, useEffect } from 'react'
+import BaseCard from "@/components/BaseCard";
 
 export default function Home(props) {
-  const [song, setSong] = useState(null)
- 
-  useEffect(() => {
-    fetch('/api/song')
-      .then((res) => res.json())
-      .then((data) => {
-        setSong(data)
-      })
-  }, [])
- 
-  if(song) {
-    return (
-      <>
+  return (
+    <>
       <Head>
         <title>Music Feed</title>
         <meta name="description" content="Have fun" />
@@ -26,10 +14,9 @@ export default function Home(props) {
       </Head>
       <main>
         <Stack direction="row" spacing={2}>
-          <BaseCard props={ song } />
+          <BaseCard />
         </Stack>
       </main>
     </>
-    );
-  }
+  );
 }
