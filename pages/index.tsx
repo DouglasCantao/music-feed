@@ -5,8 +5,15 @@ import BaseCard from '../components/BaseCard';
 import GenreSection from '../components/GenreSection';
 import { useState, useEffect } from 'react'
 
+import ConfigStepper from '../components/ConfigStepper';
+
 export default function Home(props) {
   const [song, setSong] = useState(null)
+  const [selectedGenre, setSelectedGenre] = useState([])
+  
+  const updateSelectedGenre = (genre) => {
+    setSelectedGenre(genre)
+  }
  
   useEffect(() => {
     fetch('/api/song')
@@ -26,8 +33,8 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-
-        <GenreSection />
+        <ConfigStepper selectedGenre={ selectedGenre } />
+        <GenreSection customizeFeed={ updateSelectedGenre } />
 
 
 
