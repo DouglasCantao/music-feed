@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -17,7 +17,18 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function GenreItems({ content, customizeFeed }) {
   const theme = useTheme();
-  const [genre, setGenre] = useState(content)
+  const [genre, setGenre] = useState(content);
+
+  const paperSelectedDefault = {
+    backgroundColor: theme.palette.customColor.secondaryBackground,
+    color: theme.palette.secondary.main,
+  };
+
+  const paperSelectedStyle = {
+    backgroundColor: theme.palette.customColor.secondaryLight,
+    color: theme.palette.customColor.primaryLight,
+    border: `1px solid ${theme.palette.primary.main}`,
+  };
   
   const handleItemClick = (index) => {
     let newGenre = content.map((item) => {
@@ -36,7 +47,7 @@ export default function GenreItems({ content, customizeFeed }) {
     genre && genre.map((item) => {
       return <Item key={item.name} 
         elevation={item.elevation} 
-        sx={{ backgroundColor: item.selected ? `${theme.palette.customColor.secondaryLight}` : `${ theme.palette.customColor.secondaryBackground }`, color: item.selected ? `${theme.palette.customColor.primaryLight }` : `${ theme.palette.secondary.main }` }}
+        sx={ item.selected ?  paperSelectedStyle : paperSelectedDefault }
         onClick={() => handleItemClick(item)}
         >
         {item.name.toUpperCase()}

@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 
 import ConfigStepper from '../components/ConfigStepper';
 
-export default function Home(props) {
+export default function Home() {
   const [song, setSong] = useState(null)
   const [selectedGenre, setSelectedGenre] = useState([])
   
@@ -33,7 +33,7 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <ConfigStepper selectedGenre={ selectedGenre } />
+        <ConfigStepper selectedGenre={ selectedGenre } initialStep={ updateSelectedGenre } />
         <GenreSection customizeFeed={ updateSelectedGenre } />
 
 

@@ -13,13 +13,18 @@ export default function Elevation({ customizeFeed }) {
     fetch('/api/genre')
       .then((res) => res.json())
       .then((data) => {
+        const ls = JSON.parse(localStorage.getItem('feed-cfg'));
         setGenre(data.genre.map(item => {
-          return {
-            id: item,
-            name: item,
-            selected: false,
-            elevation: 6
-          }
+          let tempItem = ls?.selectedGenre.find(row => row.id === item);
+          if(!tempItem) {
+            tempItem = {
+              id: item,
+              name: item,
+              selected: false,
+              elevation: 6
+            }
+          } 
+          return tempItem
         }))
       })
   }, [])

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useEffect, Fragment } from 'react'
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -6,14 +6,27 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const steps = ['Add some genres', 'Setup things', 'Enjoy'];
+const steps = ['Add some Genres', 'Select your Favorite Artists', 'Enjoy the Feed!'];
 
-export default function HorizontalLinearStepper({ selectedGenre }) {
-  const [activeStep, setActiveStep] = React.useState(0);
+export default function HorizontalLinearStepper({ selectedGenre, initialStep }) {
+  const ls = localStorage?.getItem('feed-cfg') || null;
+  const [activeStep, setActiveStep] = useState(ls?.activeStep || 0);
+
+  const updateLocalStorage = (selectedGenre) => {
+    if(activeStep === 0) {
+      localStorage.setItem('feed-cfg', JSON.stringify(
+        {
+        selectedGenre,
+        activeStep: activeStep
+        }
+      ));
+    }
+  }
 
   const handleNext = () => {
     if(selectedGenre.length) {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      updateLocalStorage(selectedGenre);
     }
   };
 
@@ -39,17 +52,17 @@ export default function HorizontalLinearStepper({ selectedGenre }) {
         })}
       </Stepper>
       {activeStep === steps.length ? (
-        <React.Fragment>
+        <Fragment>
           <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
+            All steps completed
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Box sx={{ flex: '1 1 auto' }} />
             <Button onClick={handleReset}>Reset</Button>
           </Box>
-        </React.Fragment>
+        </Fragment>
       ) : (
-        <React.Fragment>
+        <Fragment>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
               color="inherit"
@@ -64,7 +77,7 @@ export default function HorizontalLinearStepper({ selectedGenre }) {
               {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>
           </Box>
-        </React.Fragment>
+        </Fragment>
       )}
     </Box>
   );
