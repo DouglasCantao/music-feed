@@ -2,10 +2,11 @@ import Head from "next/head";
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import BaseCard from '../components/BaseCard';
-import GenreSection from '../components/GenreSection';
 import { useState, useEffect } from 'react'
 
+import GenreSection from '../components/GenreSection';
 import ConfigStepper from '../components/ConfigStepper';
+import ArtirtsSection from '../components/ArtirtsSection';
 
 export default function Home() {
   const [song, setSong] = useState(null)
@@ -34,8 +35,8 @@ export default function Home() {
       </Head>
       <main>
         <ConfigStepper selectedGenre={ selectedGenre } initialStep={ updateSelectedGenre } />
-        <GenreSection customizeFeed={ updateSelectedGenre } />
-
+        {/* <GenreSection customizeFeed={ updateSelectedGenre } /> */}
+        <ArtirtsSection />
 
 
         {/* <Stack direction="row" spacing={2}>
