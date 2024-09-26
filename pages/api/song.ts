@@ -8,6 +8,7 @@ export default function handler(
   res
     .status(200)
     .json({
+      id: "2up3OPMp9Tb4dAKM2erWXQ",
       name: "A Place We Called Home",
       artist: "Dreamshade",
       album: "The Gift of Life",

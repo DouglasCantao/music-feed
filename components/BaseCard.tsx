@@ -8,9 +8,10 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Cover from "@/public/img/cover.png";
+import { Song } from "@/utils/type";
 
 export default function BaseCard() {
-  const [song, setSong] = useState(null);
+  const [song, setSong] = useState<Song | null>(null);
 
   useEffect(() => {
     fetch("/api/song")
@@ -21,7 +22,7 @@ export default function BaseCard() {
   }, []);
 
   if (song) {
-    const { name, artist, cover, album } = song;
+    const { id, name, artist, cover, album } = song;
     console.log(66, name);
 
     return (
