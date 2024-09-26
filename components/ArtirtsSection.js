@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import BaseHeading from '../components/BaseHeading';
 import ArtistItems from '../components/ArtistItems';
 
-export default function ArtirtsSection () {
+export default function ArtirtsSection ({ configFeed }) {
   const [artist, setArtist] = useState(null)
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function ArtirtsSection () {
           columnSpacing={{ xs: 1, sm: 2, md: 3 }}
           sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
           >
-          <ArtistItems content={ artist } />
+          <ArtistItems content={ artist } configFeed={ configFeed } />
   
         </Grid>
 

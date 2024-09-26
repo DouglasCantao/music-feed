@@ -6,32 +6,40 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const steps = ['Add some Genres', 'Select your Favorite Artists', 'Enjoy the Feed!'];
+const steps = ['Add some Genres', 'Select your Favorite Artists', 'Building Feed!'];
 
-export default function HorizontalLinearStepper({ selectedGenre, initialStep }) {
-  const ls = localStorage?.getItem('feed-cfg') || null;
-  const [activeStep, setActiveStep] = useState(ls?.activeStep || 0);
+export default function HorizontalLinearStepper({ selectedGenre, selectedArtirts, configStep }) {
+  const [activeStep, setActiveStep] = useState(0);
+  
+  useEffect(() => {
+    const ls = localStorage?.getItem('feed-cfg') || null;
+    if(ls) {
+      const { activeStep } = JSON.parse(ls);
+      setActiveStep(activeStep);
+      configStep(activeStep);
+    }
+  }, [])
 
   const updateLocalStorage = (selectedGenre) => {
-    if(activeStep === 0) {
-      localStorage.setItem('feed-cfg', JSON.stringify(
-        {
-        selectedGenre,
-        activeStep: activeStep
-        }
-      ));
-    }
+    localStorage.setItem('feed-cfg', JSON.stringify(
+      {
+      selectedArtirts,
+      selectedGenre,
+      activeStep: activeStep + 1
+      }
+    ));
+    
   }
 
   const handleNext = () => {
-    if(selectedGenre.length) {
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      updateLocalStorage(selectedGenre);
-    }
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    updateLocalStorage(selectedGenre);
+    configStep(activeStep + 1);
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    configStep(activeStep - 1);
   };
 
   const handleReset = () => {

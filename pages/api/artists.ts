@@ -56,8 +56,6 @@ export default async function handler(
   res: NextApiResponse<ResponseData>
 ) {
 
-  console.log(34, req)
-
   const artists = await getArtistsByGenre('house', 5);
   res.status(200).json({ artists });
 }

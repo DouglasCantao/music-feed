@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
@@ -15,7 +14,7 @@ const Item = styled(Avatar)(({ theme }) => ({
   color: theme.palette.secondary.main,
 }));
 
-export default function ArtistItems({ content }) {
+export default function ArtistItems({ content, configFeed }) {
   const theme = useTheme();
   const [artist, setArtist] = useState(content);
 
@@ -38,7 +37,7 @@ export default function ArtistItems({ content }) {
       return item;
     })
     setArtist(newArtist);
-    // customizeFeed(newArtist.filter(item => item.selected));
+    configFeed(newArtist.filter(item => item.selected));
   };
 
   return (

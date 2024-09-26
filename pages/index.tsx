@@ -11,9 +11,19 @@ import ArtirtsSection from '../components/ArtirtsSection';
 export default function Home() {
   const [song, setSong] = useState(null)
   const [selectedGenre, setSelectedGenre] = useState([])
+  const [selectedArtirts, setSelectedArtirts] = useState([])
+  const [configStep, setConfigStep] = useState(0)
   
   const updateSelectedGenre = (genre) => {
     setSelectedGenre(genre)
+  }
+
+  const updateSelectedArtirts = (artirts) => {
+    setSelectedArtirts(artirts)
+  }
+
+  const updateConfigStep = (step) => {
+    setConfigStep(step)
   }
  
   useEffect(() => {
@@ -23,25 +33,50 @@ export default function Home() {
         setSong(data)
       })
   }, [])
- 
-  if(song) {
+
+  if(configStep === 0) {
     return (
       <>
       <Head>
         <title>Music Feed</title>
-        <meta name="description" content="Have fun" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="description" content="Have fun" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <ConfigStepper selectedGenre={ selectedGenre } initialStep={ updateSelectedGenre } />
-        {/* <GenreSection customizeFeed={ updateSelectedGenre } /> */}
-        <ArtirtsSection />
-
-
-        {/* <Stack direction="row" spacing={2}>
+        <ConfigStepper 
+        selectedGenre={ selectedGenre }
+        selectedArtirts={ selectedArtirts }
+        configStep={ updateConfigStep } />
+        <GenreSection customizeFeed={ updateSelectedGenre } />
+      </main>
+    </>
+    );
+  }
+ 
+  else if(configStep === 1) {
+    return (
+      <>
+      <main>
+        <ConfigStepper 
+        selectedGenre={ selectedGenre }
+        selectedArtirts={ selectedArtirts }
+        configStep={ updateConfigStep } />
+        <ArtirtsSection configFeed={ updateSelectedArtirts } />
+      </main>
+    </>
+    );
+  } else if(configStep === 2 && song) {
+    return (
+      <>
+      <main>
+        <ConfigStepper 
+        selectedGenre={ selectedGenre }
+        selectedArtirts={ selectedArtirts }
+        configStep={ updateConfigStep } />
+        <Stack direction="row" spacing={2}>
           <BaseCard props={ song } />
-        </Stack> */}
+        </Stack>
       </main>
     </>
     );
