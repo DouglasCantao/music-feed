@@ -6,8 +6,8 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -51,7 +51,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function Navbar() {
+export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -63,7 +63,7 @@ function Navbar() {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            <LibraryMusicIcon />
           </IconButton>
           <Typography
             variant="h6"
@@ -87,5 +87,3 @@ function Navbar() {
     </Box>
   );
 }
-
-export default Navbar;
