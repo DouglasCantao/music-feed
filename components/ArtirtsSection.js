@@ -10,8 +10,8 @@ export default function ArtirtsSection ({ configFeed }) {
   const [artist, setArtist] = useState(null)
 
   useEffect(() => {
-    const ls = JSON.parse(localStorage.getItem('feed-cfg'));
-    fetch(`/api/artists`)
+    const { selectedGenre } = JSON.parse(localStorage.getItem('feed-cfg'));
+    fetch(`/api/artists?genre=${selectedGenre.map((item) => item.name)}`)
       .then((res) => res.json())
       .then((data) => {
         const { artists } = data;

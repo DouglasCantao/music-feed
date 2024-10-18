@@ -14,15 +14,15 @@ export default function Home() {
   const [selectedArtirts, setSelectedArtirts] = useState([])
   const [configStep, setConfigStep] = useState(0)
   
-  const updateSelectedGenre = (genre) => {
+  const updateSelectedGenre = (genre: any) => {
     setSelectedGenre(genre)
   }
 
-  const updateSelectedArtirts = (artirts) => {
+  const updateSelectedArtirts = (artirts: any) => {
     setSelectedArtirts(artirts)
   }
 
-  const updateConfigStep = (step) => {
+  const updateConfigStep = (step: number) => {
     setConfigStep(step)
   }
  
