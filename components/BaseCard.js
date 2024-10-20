@@ -10,13 +10,12 @@ import Cover from "../public/img/cover.png";
 export default function BaseCard( { props }  ) {
   
   const { name, artist, cover, album } = props;
-  console.log(66, name);
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 450 }}>
       <CardMedia
-        sx={{ height: 140 }}
-        image={ Cover.src }
+        sx={{ height: 250 }}
+        image={ cover }
         title="cover"
       />
       <CardContent>
