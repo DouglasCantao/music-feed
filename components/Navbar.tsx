@@ -4,54 +4,35 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
+import OtherHousesIcon from '@mui/icons-material/OtherHouses';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
+const SearchForm = styled(Paper)(({ theme }) => ({
+  display: 'flex',
+  padding: '2px 4px',
+  alignItems: 'center',
+  width: '400px',
+  color: theme.palette.common.white,
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
-    width: 'auto',
-  },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  width: '100%',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
-    },
-  },
 }));
 
 export default function Navbar() {
+
+  const test = async () => {
+    const res = await fetch("/api/search?term=Linkin Park&limit=10");
+    const result = await res.json();
+
+    console.log("result = ", result);
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -73,15 +54,19 @@ export default function Navbar() {
           >
             Music Feed
           </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
+          <SearchForm>
+            <IconButton sx={{ p: '10px', color: 'inherit' }} aria-label="home">
+              <OtherHousesIcon />
+            </IconButton>
+            <InputBase
+              sx={{ ml: 1, flex: 1, color: 'inherit' }}
               placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
+              inputProps={{ 'aria-label': 'search area' }}
             />
-          </Search>
+            <IconButton type="button" sx={{ p: '10px', color: 'inherit' }} aria-label="search" onClick={test}>
+              <SearchIcon />
+            </IconButton>
+          </SearchForm>
         </Toolbar>
       </AppBar>
     </Box>
